@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dreamline Arts — Professional Graphic Design Studio</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#1A4F9C;      /* High visibility corporate blue */
+  --primary-hover:#113870;
+  --accent:#E5A93C;       /* Sharp accent gold */
+  --ink:#1F2937;          /* Deep modern neutral text */
+  --muted:#4B5563;        /* Readable charcoal prose */
+  --bg:#FFFFFF;           /* Stark clean primary background */
+  --surf:#F9FAFB;         /* Light grey surface panel */
+  --surf2:#F3F4F6;        /* Secondary panel background */
+  --bdr:#E5E7EB;          /* Crisp dividers */
+  --chat-green:#0F8C3B;   /* Deep, elegant green */
+  --chat-hover:#0B6E2E;   /* Rich green hover state */
+  --rl:12px;
+  --rm:6px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit;}
+ul{list-style:none;}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+
+/* ── NAV OVERHAUL WITH INSTANT HOVER DROPDOWNS & SPACING ── */
+.nav-container{background:#fff;border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:200;}
+.nav{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:80px;display:flex;align-items:center;justify-content:space-between;}
+.brand{font-size:1.4rem;font-weight:800;color:var(--primary);letter-spacing:-.02em;display:flex;align-items:center;gap:5px;margin-right:auto;} /* Added auto margin to put space between brand and headers */
+.brand-accent{color:var(--accent);}
+.nav-menu{display:flex;align-items:center;gap:2.25rem;} /* Generous spacing between individual headers */
+.nav-item{position:relative;padding:24px 0;} /* Extends hover hitbox cleanly */
+.nav-trigger{display:flex;align-items:center;gap:6px;font-size:.95rem;font-weight:700;color:var(--primary);transition:var(--transition);cursor:pointer;user-select:none;}
+.nav-trigger svg.arr{width:14px;height:14px;transition:transform .2s;fill:none;stroke:currentColor;stroke-width:2.5;}
+
+/* Instant Dropdown Mechanics on Hover */
+.dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:240px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rl);padding:10px;box-shadow:0 12px 30px rgba(0,0,0,.06);z-index:300;}
+.nav-item:hover .dropdown{display:block;}
+.nav-item:hover .nav-trigger{color:var(--accent);}
+.nav-item:hover .nav-trigger svg.arr{transform:rotate(180deg);}
+
+.drop-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--rm);font-size:.9rem;color:var(--ink);font-weight:500;transition:var(--transition);}
+.drop-link:hover{background:var(--surf);color:var(--primary);}
+.drop-divider{height:1px;background:var(--bdr);margin:8px 0;}
+.drop-section{padding:6px 12px 4px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);opacity:0.8;}
+.nav-cta{background:var(--primary);color:#fff;padding:12px 24px;border-radius:var(--rm);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;transition:var(--transition);box-shadow:0 4px 12px rgba(26,79,156,0.15);margin-left:2.25rem;}
+.nav-cta:hover{background:var(--primary-hover);transform:translateY(-1px);}
+
+/* ── LAYOUT & TYPOGRAPHY ── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.section{padding:6rem 0;border-bottom:1px solid var(--surf2);}
+.eyebrow{display:inline-flex;align-items:center;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:1.25rem;}
+.sec-h{font-size:2.5rem;font-weight:800;line-height:1.2;margin-bottom:3rem;color:var(--ink);letter-spacing:-.03em;}
+.txt{font-size:1.05rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+
+/* ── HIGH VISIBILITY HERO ── */
+.hero-wrap{background:linear-gradient(180deg, var(--surf) 0%, #fff 100%);padding:7rem 0 6rem;}
+.hero-inner{display:grid;grid-template-columns:1.2fr 0.8fr;gap:4rem;align-items:center;}
+.hero-title{font-size:3.75rem;font-weight:800;line-height:1.15;color:var(--ink);margin-bottom:1.75rem;letter-spacing:-.03em;}
+.hero-title em{color:var(--primary);font-style:normal;}
+.hero-sub{font-size:1.2rem;color:var(--muted);line-height:1.65;margin-bottom:2.5rem;max-width:540px;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-hero{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:16px 32px;border-radius:var(--rl);font-size:1rem;font-weight:700;transition:var(--transition);min-height:54px;}
+.btn-filled{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(229,169,60,0.25);}
+.btn-filled:hover{background:#d4972c;transform:translateY(-2px);box-shadow:0 6px 20px rgba(229,169,60,0.35);}
+.btn-outline{border:2px solid var(--primary);color:var(--primary);}
+.btn-outline:hover{background:var(--primary);color:#fff;transform:translateY(-2px);}
+.hero-img-box{width:100%;aspect-ratio:1;max-width:400px;margin:0 auto;border-radius:var(--rl);background:#fff;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.04);font-weight:700;color:var(--primary);font-size:1.1rem;}
+
+/* ── VISIBLE CONTENT TILES ── */
+.tile-display{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl);padding:3rem;box-shadow:0 10px 30px rgba(0,0,0,0.02);}
+.tabs-bar{display:inline-flex;background:var(--surf2);border-radius:var(--rl);padding:.4rem;margin-bottom:2.5rem;}
+.tab-btn{padding:.75rem 1.75rem;border-radius:var(--rl);font-size:.95rem;font-weight:700;color:var(--muted);transition:var(--transition);}
+.tab-btn.act{background:#fff;color:var(--primary);box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+.tab-panel-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:center;}
+.content-visual-box{width:100%;height:300px;background:var(--surf);border-radius:var(--rl);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted);border:1px dashed var(--bdr);}
+
+/* ── TEAM GRID ── */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
+.team-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rl);padding:2.5rem 2rem;text-align:center;transition:var(--transition);}
+.team-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.03);border-color:var(--primary);}
+.avatar-ph{width:96px;height:96px;border-radius:50%;margin:0 auto 1.5rem;background:#fff;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted);box-shadow:0 4px 10px rgba(0,0,0,0.02);}
+.team-card h4{font-size:1.25rem;font-weight:700;margin-bottom:.35rem;color:var(--ink);}
+.team-role{display:block;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:1.25rem;}
+
+/* ── FILTER & PORTFOLIO ── */
+.filter-bar{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:3rem;}
+.flt-btn{padding:.65rem 1.5rem;border:1px solid var(--bdr);border-radius:var(--rl);font-size:.95rem;font-weight:600;color:var(--muted);background:#fff;transition:var(--transition);}
+.flt-btn:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-1px);}
+.flt-btn.act{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 4px 12px rgba(26,79,156,0.2);}
+
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
+.p-card{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.01);transition:var(--transition);}
+.p-card:hover{transform:translateY(-6px);border-color:var(--primary);box-shadow:0 16px 36px rgba(0,0,0,0.04);}
+.p-ph{width:100%;height:240px;background:var(--surf);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted);border-bottom:1px solid var(--bdr);}
+.p-meta{padding:1.5rem;}
+.p-cat-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:var(--rm);margin-bottom:.75rem;background:var(--surf2);color:var(--ink);}
+.p-card.hide{display:none;}
+.p-title{font-size:1.1rem;font-weight:700;color:var(--ink);}
+
+/* ── CLEAN TESTIMONIALS ── */
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
+.t-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rl);padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;transition:var(--transition);}
+.t-card:hover{background:#fff;border-color:var(--bdr);box-shadow:0 12px 30px rgba(0,0,0,0.03);transform:translateY(-2px);}
+.q-text{font-size:1.05rem;line-height:1.7;margin-bottom:1.75rem;color:var(--ink);font-weight:500;font-style:italic;}
+.reviewer{display:flex;align-items:center;gap:1.25rem;}
+.rev-ph{width:48px;height:48px;border-radius:50%;background:#fff;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;box-shadow:0 2px 6px rgba(0,0,0,0.02);}
+.rev-name{font-size:1rem;font-weight:700;color:var(--ink);}
+.rev-co{font-size:.85rem;color:var(--muted);}
+
+/* ── STATS STRIP ── */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--primary);border-radius:var(--rl);overflow:hidden;box-shadow:0 10px 30px rgba(26,79,156,0.15);}
+.stat-cell{padding:3rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.12);}
+.stat-cell:last-child{border-right:none;}
+.stat-n{font-size:2.75rem;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-.02em;}
+.stat-l{font-size:.9rem;color:#fff;font-weight:600;margin-top:.75rem;text-transform:uppercase;letter-spacing:.08em;opacity:0.9;}
+
+/* ── CONTACT & SOCIAL MEDIA WITH RESPECIVE ICONS ── */
+.contact-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:start;}
+.contact-info{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rl);padding:3.5rem 3rem;}
+.contact-info h3{font-size:1.75rem;font-weight:800;color:var(--ink);margin-bottom:2rem;letter-spacing:-.02em;}
+.c-link{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--bdr);transition:var(--transition);}
+.c-link:last-child{border-bottom:none;}
+.c-link:hover{color:var(--primary);transform:translateX(4px);}
+.c-link-txt{font-size:1.15rem;font-weight:700;color:var(--ink);}
+.c-link-sub{font-size:.9rem;color:var(--muted);margin-top:4px;}
+
+.socials-card{border:1px solid var(--bdr);border-radius:var(--rl);padding:3rem;background:#fff;}
+.socials-card h3{font-size:1.35rem;font-weight:800;margin-bottom:2rem;letter-spacing:-.01em;}
+.soc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+.soc-btn{display:flex;align-items:center;justify-content:flex-start;gap:.75rem;padding:14px 18px;border-radius:var(--rm);border:1px solid var(--bdr);font-size:.95rem;font-weight:600;background:var(--surf);transition:var(--transition);}
+.soc-btn svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;}
+.soc-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,79,156,0.12);}
+
+.trust-chip{display:inline-flex;align-items:center;gap:10px;background:var(--surf2);color:var(--ink);border-radius:var(--rm);padding:10px 20px;font-size:.95rem;font-weight:700;}
+.trust-dot{width:10px;height:10px;background:#10B981;border-radius:50%;position:relative;}
+.trust-dot::after{content:'';position:absolute;width:100%;height:100%;background:inherit;border-radius:50%;animation:pulse 2s infinite;}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ── VISUALLY APPEALING DEEP GREEN STICKY CHAT BUTTON ── */
+.chat-floating-container {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 999; 
+  pointer-events: none;
+}
+.chat-pill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--chat-green);
+  color: #fff;
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(15, 140, 59, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color .2s, box-shadow .2s;
+}
+.chat-pill:hover {
+  background: var(--chat-hover);
+  color: #fff;
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 14px 32px rgba(11, 110, 46, 0.45);
+}
+.chat-icon-svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer{background:#fff;border-top:1px solid var(--bdr);padding:2.5rem 1.5rem;text-align:center;font-size:.95rem;color:var(--muted);font-weight:500;}
+
+/* ── RESPONSIVE DESIGN ADAPTATION ── */
+@media(max-width:960px){
+  .hero-inner,.tab-panel-grid,.contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .hero-title{font-size:2.85rem;}
+  .team-grid,.p-grid,.t-grid{grid-template-columns:1fr 1fr;}
+  .stats-strip{grid-template-columns:1fr 1fr;}
+  .stat-cell:nth-child(2){border-right:none;}
+  .stat-cell:nth-child(1),.stat-cell:nth-child(2){border-bottom:1px solid rgba(255,255,255,0.12);}
+  .nav-cta{margin-left:0;}
+  .brand{margin-right:0;}
+}
+@media(max-width:640px){
+  .nav-menu, .nav-cta{display:none;}
+  .team-grid,.p-grid,.t-grid,.stats-strip,.soc-grid{grid-template-columns:1fr;}
+  .stat-cell{border-right:none;border-bottom:1px solid rgba(255,255,255,0.12);}
+  .stat-cell:last-child{border-bottom:none;}
+  .chat-floating-container {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  .chat-pill {
+    padding: 14px 22px;
+    font-size: .85rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV CONTAINER ══ -->
+<div class="nav-container">
+  <nav class="nav" aria-label="Main navigation">
+    <div class="brand">Dreamline <span class="brand-accent">Arts</span></div>
+
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item" id="ni-home">
+        <div class="nav-trigger" tabindex="0" aria-haspopup="true">
+          Home
+          <svg class="arr" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <ul class="dropdown" role="menu">
+          <li><a class="drop-link" href="#sec-home" onclick="scrollToEl('sec-home')">Overview</a></li>
+          <li><a class="drop-link" href="#sec-hero-cta" onclick="scrollToEl('sec-hero-cta')">Get Started</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item" id="ni-about">
+        <div class="nav-trigger" tabindex="0" aria-haspopup="true">
+          About
+          <svg class="arr" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <ul class="dropdown" role="menu">
+          <div class="drop-section">Company</div>
+          <li><a class="drop-link" href="#sec-about" onclick="scrollToEl('sec-about');showTab(0)">Studio Profile</a></li>
+          <li><a class="drop-link" href="#sec-about" onclick="scrollToEl('sec-about');showTab(1)">Production Ecosystem</a></li>
+          <div class="drop-divider"></div>
+          <div class="drop-section">People</div>
+          <li><a class="drop-link" href="#sec-team" onclick="scrollToEl('sec-team')">Meet the Team</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item" id="ni-services">
+        <div class="nav-trigger" tabindex="0" aria-haspopup="true">
+          Services
+          <svg class="arr" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <ul class="dropdown" role="menu">
+          <div class="drop-section">Design Types</div>
+          <li><a class="drop-link" href="#sec-portfolio" onclick="scrollToEl('sec-portfolio');filterBy('posters')">Posters</a></li>
+          <li><a class="drop-link" href="#sec-portfolio" onclick="scrollToEl('sec-portfolio');filterBy('flyers')">Flyers</a></li>
+          <li><a class="drop-link" href="#sec-portfolio" onclick="scrollToEl('sec-portfolio');filterBy('business-cards')">Business Cards</a></li>
+          <li><a class="drop-link" href="#sec-portfolio" onclick="scrollToEl('sec-portfolio');filterBy('invitation-cards')">Invitation Cards</a></li>
+          <div class="drop-divider"></div>
+          <li><a class="drop-link" href="#sec-portfolio" onclick="scrollToEl('sec-portfolio');filterBy('all')">View All Work</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item" id="ni-work">
+        <div class="nav-trigger" tabindex="0" aria-haspopup="true">
+          Work
+          <svg class="arr" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <ul class="dropdown" role="menu">
+          <li><a class="drop-link" href="#sec-testimonials" onclick="scrollToEl('sec-testimonials')">Client Reviews</a></li>
+          <li><a class="drop-link" href="#sec-stats" onclick="scrollToEl('sec-stats')">Studio Stats</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a class="nav-cta" href="#sec-contact" onclick="scrollToEl('sec-contact')">Contact</a>
+  </nav>
+</div>
+
+<!-- ══ HERO ══ -->
+<div id="sec-home" class="hero-wrap">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Visual Communications Studio</span>
+      <h1 class="hero-title">Design That <em>Speaks</em> Before You Do.</h1>
+      <p class="hero-sub">We craft bold, purposeful visual identities — from striking posters and flyers to unforgettable business cards that command target market attention.</p>
+      <div class="hero-btns" id="sec-hero-cta">
+        <button class="btn-hero btn-filled" onclick="scrollToEl('sec-portfolio');filterBy('all')">See Our Work</button>
+        <button class="btn-hero btn-outline" onclick="scrollToEl('sec-contact')">Start a Project</button>
+      </div>
+    </div>
+    <div class="hero-img-box" role="img" aria-label="Dreamline Production Preview">
+      [Product Display Asset]
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT SECTION ══ -->
+<div class="wrap section" id="sec-about">
+  <span class="eyebrow">Our Story</span>
+  <h2 class="sec-h">Built on a Love for Visual Craft</h2>
+
+  <div class="tile-display">
+    <div class="tabs-bar" role="tablist">
+      <button class="tab-btn act" id="tb0" role="tab" aria-selected="true" onclick="showTab(0)">Dreamline Arts</button>
+      <button class="tab-btn"     id="tb1" role="tab" aria-selected="false" onclick="showTab(1)">Production Wings</button>
+    </div>
+
+    <div id="tp0" class="tab-panel-grid">
+      <div class="content-visual-box" role="img" aria-label="Brand Strategy Display">Corporate Profile Visual</div>
+      <div>
+        <h3 style="font-size:1.5rem; margin-bottom:1rem; font-weight:700;">A Creative Enterprise</h3>
+        <p class="txt">Dreamline Arts is a forward-thinking creative studio built around visual storytelling, brand communications, and comprehensive identity design. We partner with businesses, events, and individuals to bring ideas to life.</p>
+      </div>
+    </div>
+    
+    <div id="tp1" class="tab-panel-grid" style="display:none">
+      <div class="content-visual-box" role="img" aria-label="Studio Artwork Display">Studio Production Asset</div>
+      <div>
+        <h3 style="font-size:1.5rem; margin-bottom:1rem; font-weight:700;">The Design Core</h3>
+        <p class="txt">Our production workspace translates abstract configurations into beautiful, print-ready digital vectors. We focus deeply on high-demand modern layouts and pristine aesthetics.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div id="sec-team" style="margin-top:5rem;">
+    <span class="eyebrow">The Team</span>
+    <h2 class="sec-h">The Creative Minds</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar-ph">EM</div>
+        <h4>Ethan Malick</h4><span class="team-role">Managing Director</span>
+        <p class="txt" style="font-size:.95rem; margin:0;">Overseeing creative direction and client strategy across every project.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar-ph">NM</div>
+        <h4>Nadia Mwangi</h4><span class="team-role">Lead Designer</span>
+        <p class="txt" style="font-size:.95rem; margin:0;">Driving colour systems, grid architecture, and typographic storytelling.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar-ph">MK</div>
+        <h4>Marcus Kibuuka</h4><span class="team-role">Print Specialist</span>
+        <p class="txt" style="font-size:.95rem; margin:0;">Ensuring flawless print-ready output and substrate compatibility.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PORTFOLIO EXHIBIT ══ -->
+<div id="sec-portfolio" class="wrap section">
+  <span class="eyebrow">Our Portfolio</span>
+  <h2 class="sec-h">Bespoke Print &amp; Digital Design</h2>
+
+  <div class="filter-bar" id="filterBar" role="group" aria-label="Filter products">
+    <button class="flt-btn act" data-f="all"              onclick="filterCards(this)">All Work</button>
+    <button class="flt-btn"     data-f="posters"          onclick="filterCards(this)">Posters</button>
+    <button class="flt-btn"     data-f="flyers"           onclick="filterCards(this)">Flyers</button>
+    <button class="flt-btn"     data-f="business-cards"   onclick="filterCards(this)">Business Cards</button>
+    <button class="flt-btn"     data-f="invitation-cards" onclick="filterCards(this)">Invitation Cards</button>
+  </div>
+
+  <div class="p-grid" id="pGrid">
+    <div class="p-card p-poster" data-cat="posters">
+      <div class="p-ph">Poster Showcase 1</div>
+      <div class="p-meta"><span class="p-cat-badge">Poster</span><div class="p-title">Corporate Launch Poster</div></div>
+    </div>
+    <div class="p-card p-poster" data-cat="posters">
+      <div class="p-ph">Poster Showcase 2</div>
+      <div class="p-meta"><span class="p-cat-badge">Poster</span><div class="p-title">Art Exhibition Showcase</div></div>
+    </div>
+    <div class="p-card p-flyer" data-cat="flyers">
+      <div class="p-ph">Flyer Showcase 1</div>
+      <div class="p-meta"><span class="p-cat-badge">Flyer</span><div class="p-title">Grand Opening Flyer</div></div>
+    </div>
+    <div class="p-card p-flyer" data-cat="flyers">
+      <div class="p-ph">Flyer Showcase 2</div>
+      <div class="p-meta"><span class="p-cat-badge">Flyer</span><div class="p-title">Music Event Handout</div></div>
+    </div>
+    <div class="p-card p-bcard" data-cat="business-cards">
+      <div class="p-ph">Business Card Showcase 1</div>
+      <div class="p-meta"><span class="p-cat-badge">Business Card</span><div class="p-title">Premium Edge Finish</div></div>
+    </div>
+    <div class="p-card p-invite" data-cat="invitation-cards">
+      <div class="p-ph">Invitation Showcase 1</div>
+      <div class="p-meta"><span class="p-cat-badge">Invitation</span><div class="p-title">Bespoke Wedding Suite</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TESTIMONIALS ══ -->
+<div class="wrap section" id="sec-testimonials">
+  <span class="eyebrow">Client Voices</span>
+  <h2 class="sec-h">What Our Clients Say</h2>
+  <div class="t-grid">
+    <div class="t-card">
+      <p class="q-text">"Dreamline completely transformed our promotional materials. The attention to layout layout structures generated immediate target returns."</p>
+      <div class="reviewer">
+        <div class="rev-ph">CV</div>
+        <div><div class="rev-name">Clara Vance</div><div class="rev-co">Vance Properties Intl</div></div>
+      </div>
+    </div>
+    <div class="t-card">
+      <p class="q-text">"The custom corporate assets redefined our networking presence. Simple, bold, and crisp clarity on immediate touchpoints."</p>
+      <div class="reviewer">
+        <div class="rev-ph">JB</div>
+        <div><div class="rev-name">Julian Blake</div><div class="rev-co">Apex Asset Management</div></div>
+      </div>
+    </div>
+    <div class="t-card">
+      <p class="q-text">"Flawless print assets delivered way ahead of critical campaign schedules. Exceptional attention to detail."</p>
+      <div class="reviewer">
+        <div class="rev-ph">SO</div>
+        <div><div class="rev-name">Sophia Omondi</div><div class="rev-co">Private Client</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PERFORMANCE STATS STRIP ══ -->
+<div id="sec-stats" class="wrap" style="padding:2rem 0 4rem;">
+  <div class="stats-strip">
+    <div class="stat-cell"><div class="stat-n">500+</div><div class="stat-l">Projects Delivered</div></div>
+    <div class="stat-cell"><div class="stat-n">3+</div><div class="stat-l">Years active</div></div>
+    <div class="stat-cell"><div class="stat-n">4</div><div class="stat-l">Core Disciplines</div></div>
+    <div class="stat-cell"><div class="stat-n">100%</div><div class="stat-l">On-Time Delivery</div></div>
+  </div>
+</div>
+
+<!-- ══ REACH OUT CHANNELS ══ -->
+<div id="sec-contact" class="wrap section">
+  <span class="eyebrow">Get In Touch</span>
+  <h2 class="sec-h">Let's Build Something Beautiful Together</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Direct Channels</h3>
+      <a href="https://wa.me/255700000000" class="c-link" target="_blank" rel="noopener">
+        <div><div class="c-link-txt">+255 700 000 000</div><div class="c-link-sub">WhatsApp — Fast response channel</div></div>
+      </a>
+      <a href="mailto:studio@dreamline.com" class="c-link">
+        <div><div class="c-link-txt">studio@dreamline.com</div><div class="c-link-sub">For detailed requirements documentation</div></div>
+      </a>
+      <div style="margin-top:2rem;">
+        <div class="trust-chip"><span class="trust-dot"></span>Active Response SLA: Under 24 Hours</div>
+      </div>
+    </div>
+    <div class="socials-card">
+      <h3>Follow Our Studio</h3>
+      <div class="soc-grid">
+        <a href="#" class="soc-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 0.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+        <a href="#" class="soc-btn">
+          <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+          Facebook
+        </a>
+        <a href="#" class="soc-btn">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" class="soc-btn">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.01.08 1.53.63 3.02 1.59 4.23.94.06 1.87.03 2.81.02v3.9c-1.19-.01-2.38-.25-3.5-.73-.13 3.14-1.16 6.24-3.21 8.67-2.21 2.76-5.83 4.22-9.3 3.63-3.66-.52-6.81-3.41-7.56-7.03-.89-4.14 1.34-8.54 5.3-10.05 1.1-.44 2.29-.62 3.47-.53v4.06c-.8-.19-1.66-.08-2.4.3-.98.48-1.67 1.48-1.8 2.57-.27 1.95 1.17 3.79 3.11 4.07 1.63.26 3.31-.69 3.84-2.24.16-.54.21-1.11.2-1.68V0z"/></svg>
+          TikTok
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STICKY / FLOATING DEEP GREEN CHAT MODULE ══ -->
+<div class="chat-floating-container">
+  <a href="https://wa.me/255700000000" class="chat-pill" target="_blank" rel="noopener">
+    <svg class="chat-icon-svg" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.001-2.633-1.025-5.107-2.892-6.973-1.867-1.866-4.35-2.892-6.983-2.893-5.442 0-9.866 4.413-9.869 9.85-.001 1.748.469 3.453 1.36 4.965l-.995 3.635 3.731-.973zm13.102-6.963c-.3-.15-1.771-.875-2.046-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.893-.797-1.495-1.782-1.67-2.083-.175-.3-.019-.461.13-.61l.404-.471c.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.589-.493-.51-.675-.52-.172-.007-.368-.012-.565-.012-.196 0-.518.074-.789.374-.271.3-1.034 1.013-1.034 2.47 0 1.458 1.061 2.864 1.21 3.064.149.2 2.089 3.191 5.061 4.477.707.306 1.258.489 1.69.626.712.226 1.36.194 1.872.118.571-.085 1.771-.725 2.021-1.425.25-.7.25-1.3 1.75-1.425-.075-.125-.275-.225-.575-.375z"/>
+    </svg>
+    Chat With Us
+  </a>
+</div>
+
+<footer class="footer">
+  &copy; <span id="yr"></span> Dreamline Arts. All rights reserved.
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+function scrollToEl(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function showTab(idx){
+  [document.getElementById('tp0'),document.getElementById('tp1')].forEach((p,i)=>{
+    p.style.display=i===idx?'grid':'none';
+  });
+  [document.getElementById('tb0'),document.getElementById('tb1')].forEach((b,i)=>{
+    b.classList.toggle('act',i===idx);
+    b.setAttribute('aria-selected',String(i===idx));
+  });
+}
+
+function filterCards(btn){
+  document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act');
+  const f=btn.dataset.f;
+  document.querySelectorAll('.p-card').forEach(c=>{
+    c.classList.toggle('hide', f!=='all' && c.dataset.cat!==f);
+  });
+}
+
+function filterBy(cat){
+  const btn=document.querySelector('[data-f="'+cat+'"]');
+  if(btn) filterCards(btn);
+}
+</script>
+</body>
+</html>
